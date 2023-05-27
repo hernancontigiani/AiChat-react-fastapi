@@ -2,7 +2,7 @@ FROM python:3.9.5
 
 ENV DEBUG=1
 
-WORKDIR /opt/api
+WORKDIR /opt/back
 
 RUN apt -y update && \
     rm -rf /var/lib/apt/lists/*

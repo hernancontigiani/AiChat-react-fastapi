@@ -16,7 +16,7 @@ services:
       - .:/opt/back
     
     ports:
-      - "8000:8000"
+      - "5000:5000"
 
     networks:
       - isolation-network
@@ -27,7 +27,7 @@ services:
     depends_on:
       - db
     
-    command: python -m uvicorn back.main:app --host 0.0.0.0 --port 8000 --reload
+    command: python -m uvicorn back.main:app --host 0.0.0.0 --port 5000 --reload
   
   db:
     image: postgres:13.2
@@ -44,7 +44,7 @@ services:
     environment:
       - POSTGRES_USER=${DB_USERNAME}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - POSTGRES_DB=renaiss_db
+      - POSTGRES_DB=${DB_NAME}
     
   adminer:
     image: adminer
@@ -53,6 +53,6 @@ services:
       - isolation-network
 
     ports:
-      - 8080:8080
+      - 5080:8080
     depends_on: 
       - db
