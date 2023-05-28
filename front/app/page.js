@@ -5,9 +5,9 @@ import { useContext } from "react"
 import { AppContext } from "../controller/context"
 import { useRouter } from 'next/navigation';
 
-import ChatList from "@/components/ChatList"
+import ChatList from "@/components/chat/ChatList"
 import NavBar from "@/components/NavBar"
-import Chat from "@/components/Chat"
+import ChatBody from "@/components/chat/ChatBody"
 
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
     <div className="flex flex-col h-screen">
         <NavBar />
         <ChatList />
-        <Chat />
+        <ChatBody />
     </div>
 
     )
