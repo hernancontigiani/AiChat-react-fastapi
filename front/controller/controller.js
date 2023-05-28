@@ -24,6 +24,15 @@ export const AppController = (state, dispatch) => {
       });
     }
 
+    const sigup = (username, password) => {
+      AuthAPI.sigup(username, password).then((response) => {
+        updateToken(response.token);
+        dispatch({type: "setToken", payload: response.token})
+      }).catch( error => {
+        alert(error.response.data.detail);  
+      });
+    }
+
     const logout = () => {
       removeToken();
       dispatch({type: "setToken", payload: ""})
@@ -148,6 +157,7 @@ export const AppController = (state, dispatch) => {
 
     return {
         login,
+        sigup,
         logout,
         getChats,
         showChat,

@@ -63,9 +63,6 @@ async def create_message(chat_id: int, user_id = Depends(auth_handler.auth_wrapp
     db.add(message)
     db.commit()
 
-    # import time
-    # time.sleep(3)
-
     return message.serialize()
 
 

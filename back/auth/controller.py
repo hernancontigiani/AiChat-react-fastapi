@@ -47,7 +47,9 @@ async def singnup(auth_details: RegisterAuthDetails, db: Session = Depends(get_d
         "password": hashed_password    
     })
 
-    return Response(status_code = 200)
+    auth_user_data = get_auth_user_by_username(db, auth_details.username)
+    token = auth_handler.encode_token(auth_user_data.id)
+    return {"token": token, "token_type": "bearer"}
 
 
 async def login(auth_details: AuthDetails, db: Session = Depends(get_database)):

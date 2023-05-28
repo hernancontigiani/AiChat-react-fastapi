@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { AppContext } from "@/controller/context"
 import Spinner from "@/components/Spinner"
 
-export default function Login() {
+export default function SignUp() {
     const [spinner, setSpinner] = useState(<></>)
     const {state, AppController} = useContext(AppContext)
     const router = useRouter();
@@ -24,7 +24,7 @@ export default function Login() {
         const username = data.get('username');
         const password = data.get('password');
         setSpinner(<Spinner />)
-        AppController.login(username, password);
+        AppController.sigup(username, password);
     }
 
     return (
@@ -38,7 +38,7 @@ export default function Login() {
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                            Sign in to your account
+                            Create your new account
                         </h1>
                         <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
                             <div>
@@ -51,13 +51,10 @@ export default function Login() {
                             </div>
                             <button 
                                 type="submit"
-                                className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+                                className="w-full text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
                             >
-                                Sign in
+                                Sign up
                             </button>
-                            <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don’t have an account yet? <a href="#" className="font-medium text-primary-600 hover:underline dark:text-primary-500" onClick={() => router.push('/signup')}>Sign up</a>
-                            </p>
                         </form>
                         {spinner}
                     </div>
