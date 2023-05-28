@@ -32,6 +32,12 @@ export const AppController = (state, dispatch) => {
     const getChats = () => {
         ChatAPI.getAll(state.token).then((response) => {
             dispatch({type: "setChats", payload: response})
+            // Checkout if max amount of chats is reached
+            // and show the last one (the first chat in the array)
+            if(response.length >= 20) {
+              const last_chat_id = response[0].id
+              dispatch({type: "setChatVisible", payload: last_chat_id})
+            }
         }).catch( error => {
           alert(error.response.data.detail);
           removeToken();
@@ -101,6 +107,10 @@ export const AppController = (state, dispatch) => {
       };
 
     const createChat = (message) => {
+      if(state.chats.length >= 20) {
+        alert("You have reached the maximum amount of chats")
+        return;
+      }
       const chatName = `Chat ${message.substring(0,5)}`
       ChatAPI.createChat(state.token, chatName).then((response) => {
         const newChats = [
@@ -114,6 +124,15 @@ export const AppController = (state, dispatch) => {
       }).catch( error => {
         alert("Error: " + error.response.data.detail)
       });
+    }
+
+    const newChat = () => {
+      if(state.chats.length >= 20) {
+        alert("You have reached the maximum amount of chats")
+        return;
+      }
+      dispatch({type: "setMessages", payload: []})
+      dispatch({type: "setChatVisible", payload: null})
     }
 
     const getChatName = () => {
@@ -135,5 +154,6 @@ export const AppController = (state, dispatch) => {
         sendMessage,
         createChat,
         getChatName,
+        newChat,
     }
 }

@@ -24,6 +24,7 @@ export default function ChatInput() {
             else {
                 AppController.sendMessage(message);
             }
+            document.getElementById("inputMessage").value = "";
         }
     }
 
