@@ -8,6 +8,7 @@ import logging
 from sqlalchemy.orm import Session
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi import FastAPI, Depends, Response, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 from .settings import settings
 from .routes import router as api_router
@@ -21,6 +22,19 @@ Base.metadata.create_all(bind=engine)
 
 # Create server
 app = FastAPI(debug=True, docs_url="/index.html")
+
+# CORS config
+origins = [
+    "*"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
+# app.middleware("http")(response_handler)
 
 log.info("Starting server")
 
