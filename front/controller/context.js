@@ -1,12 +1,13 @@
 "use client"
 
 import { createContext, useReducer } from "react";
-import { AppController } from "./controller";
+import { AppController, initializeAuthentication } from "./controller";
 
 export const AppContext = createContext();
 
 
 const initialState = {
+    token: initializeAuthentication(),
     chats: [],
     messages: [],
     chatVisible: null,
@@ -16,6 +17,11 @@ const AppReducer = (state, action) => {
     const { type, payload } = action;
   
     switch (type) {
+      case "setToken":
+        return {
+          ...state,
+          token: payload,
+        };
       case "setChats":
         return {
           ...state,

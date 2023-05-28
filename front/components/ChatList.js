@@ -22,9 +22,10 @@ export default function ChatList() {
     const {state, AppController} = useContext(AppContext)
     
     useEffect(() => {
-        AppController.getChats()
-      }, [])
-
+        if(state.token) {
+            AppController.getChats()
+        }
+      }, [state.token])
 
     return (
 

@@ -1,5 +1,17 @@
+"use client"
+import { useContext } from "react"
+import { AppContext } from "@/controller/context"
+
 
 export default function NavBar() {
+    const {state, AppController} = useContext(AppContext)
+
+    const handleSignOut = (e) => {
+        e.preventDefault();
+        AppController.logout()
+
+    }
+
     return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
         <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -17,7 +29,11 @@ export default function NavBar() {
                     </a>
                 </div>
                 <div className="flex items-center">
-                    <div className="flex items-center ml-3">
+                    <div className="flex items-center ml-3 gap-5">
+                        <a  href="#" 
+                            className="font-medium text-primary-600 hover:underline dark:text-primary-500"
+                            onClick={handleSignOut}
+                        >Sign out</a>
                         <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-2.jpg" alt="user photo" />
                     </div>
                 </div>
