@@ -7,6 +7,7 @@ module.exports = {
     // './node_modules/flowbite/**/*.js',
     "./node_modules/flowbite-react/**/*.js",
     "./api/**/*.js",
+    "./controller/**/*.js",
   ],
   theme: {
     // extend: {

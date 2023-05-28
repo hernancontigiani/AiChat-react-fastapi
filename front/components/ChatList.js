@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from 'react'
+import { useContext } from "react"
+import { AppContext } from "../controller/context"
 
-import { AuthAPI } from "../api/AuthAPI";
+// import { AuthAPI } from "../api/AuthAPI";
 
 function ChatItem({name, amount}){
     return (
@@ -17,16 +19,12 @@ function ChatItem({name, amount}){
 }
 
 export default function ChatList() {
-
+    const {state, AppController} = useContext(AppContext)
+    
     useEffect(() => {
-        
-        AuthAPI.login().then((data) => {
-            console.log(data)
-      
-        });
-
-
+        AppController.getChats()
       }, [])
+
 
     return (
 
