@@ -31,7 +31,7 @@ export default function ChatInput() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label for="chat" className="sr-only">Your message</label>
+            <label htmlFor="chat" className="sr-only">Your message</label>
             <div className="flex items-center px-3 py-2 rounded-lg bg-gray-50 dark:bg-gray-700">
                 <textarea
                     id="inputMessage"

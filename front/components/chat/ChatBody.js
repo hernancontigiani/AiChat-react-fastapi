@@ -27,11 +27,10 @@ export default function ChatBody() {
                 }
                 {Array.isArray(state.messages)
                     ?
-                    state.messages.map( msg => (
-                        <>
-                        <ChatMessage key={`${msg.id}u`} isUser={true} text={msg.user_message}/>
-                        <ChatMessage key={`${msg.id}b`} isUser={false} text={msg.bot_message}/>
-                        </>
+                    state.messages.map( (msg, i) => (
+                        <li key={i}>
+                            <ChatMessage msg={msg}/>
+                        </li>
                     ))
                     : null
                 }

@@ -3,7 +3,7 @@
 import { ChatAPI } from "@/api/ChatAPI";
 import { AuthAPI } from "@/api/AuthAPI";
 import { updateToken, removeToken } from "@/api/client";
-import { stringify } from "postcss";
+
 
 export const initializeAuthentication = () => {
   const token = typeof window !== "undefined" ?
@@ -45,7 +45,7 @@ export const AppController = (state, dispatch) => {
             // and show the last one (the first chat in the array)
             if(response.length >= 20) {
               const last_chat_id = response[0].id
-              dispatch({type: "setChatVisible", payload: last_chat_id})
+              showChat(last_chat_id);
             }
         }).catch( error => {
           alert(error.response.data.detail);
