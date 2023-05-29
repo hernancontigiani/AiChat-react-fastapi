@@ -68,6 +68,11 @@ export const AppController = (state, dispatch) => {
     }
 
     const _sendMessage = (message, chat_id) => {
+        if(state.messages.length >= 20) {
+          alert("You have reached the maximum amount of messages on this chat, create a new one")
+          return;
+        }
+
         const originalList = state.messages;
         // const tmpMessages = [
         //       ...originalList,
