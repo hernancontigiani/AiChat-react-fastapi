@@ -29,7 +29,7 @@ export default function ChatBody() {
                     ?
                     state.messages.map( (msg, i) => (
                         <li key={i}>
-                            <ChatMessage msg={msg}/>
+                            <ChatMessage user_message={msg.user_message} bot_message={msg.bot_message}/>
                         </li>
                     ))
                     : null

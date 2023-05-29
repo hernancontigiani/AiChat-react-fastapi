@@ -9,6 +9,7 @@ from sqlalchemy.orm import Session
 from back.database import get_database
 
 from back.auth.AuthHandler import auth_handler
+from back.auth.models import AuthUser
 
 class ChatDetails(BaseModel):
     name: str
@@ -37,6 +38,10 @@ async def getAll(user_id = Depends(auth_handler.auth_wrapper), db: Session = Dep
 
 
 async def create(user_id = Depends(auth_handler.auth_wrapper), chat_detail: ChatDetails = Body(..., media_type="application/json"), db: Session = Depends(get_database)):
+    user = db.query(AuthUser).filter(AuthUser.id == user_id).first()
+    if user is None:
+        raise HTTPException(status_code = 404, detail = "User not found, please login again")
+
     chat = Chat(user_id = user_id, name = chat_detail.name)
     db.add(chat)
     db.commit()
@@ -45,7 +50,6 @@ async def create(user_id = Depends(auth_handler.auth_wrapper), chat_detail: Chat
 
 
 async def get_messages(chat_id: int, user_id = Depends(auth_handler.auth_wrapper), db: Session = Depends(get_database)):
-    print("entree")
     messages = db.query(Message).join(Message.chat).filter(Message.chat_id == chat_id, Chat.user_id == user_id)
     return [message.serialize() for message in messages]
 

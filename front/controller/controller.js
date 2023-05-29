@@ -10,7 +10,6 @@ export const initializeAuthentication = () => {
      window.sessionStorage.getItem('token') 
      : 
      "";
-  // console.log(`token: ${token}`)
   return token? token : ""
 }
 
@@ -69,17 +68,16 @@ export const AppController = (state, dispatch) => {
     }
 
     const _sendMessage = (message, chat_id) => {
-        console.log(`_sendMessage chat_id ${chat_id}`)
         const originalList = state.messages;
-        const tmpMessages = [
-              ...originalList,
-            {
-              id: state.messages.length + 1,
-              user_message: message,
-              bot_message: "thinking..."
-            }
-        ]
-        dispatch({type: "setMessages", payload: tmpMessages})
+        // const tmpMessages = [
+        //       ...originalList,
+        //     {
+        //       id: state.messages.length + 1,
+        //       user_message: message,
+        //       bot_message: "thinking..."
+        //     }
+        // ]
+        // dispatch({type: "setMessages", payload: tmpMessages})
         ChatAPI.postMessage(state.token, chat_id, message).then((response) => {
           const newMessages = [
             ...originalList,
@@ -102,15 +100,15 @@ export const AppController = (state, dispatch) => {
             getChats();
           }
         }).catch( error => {
-          const newMessages = [
-              ...originalList,
-            {
-              id: state.messages.length + 1,
-              user_message: message,
-              bot_message: "error..."
-            }
-          ]
-          dispatch({type: "setMessages", payload: newMessages})
+          // const newMessages = [
+          //     ...originalList,
+          //   {
+          //     id: state.messages.length + 1,
+          //     user_message: message,
+          //     bot_message: "error..."
+          //   }
+          // ]
+          // dispatch({type: "setMessages", payload: newMessages})
           alert("Error: " + error.response.data.detail)
         });
       };
@@ -128,7 +126,6 @@ export const AppController = (state, dispatch) => {
         ]
         dispatch({type: "setChats", payload: newChats})
         dispatch({type: "setChatVisible", payload: response.id})
-        console.log(`createChat chat_id ${response.id}`)
         _sendMessage(message, response.id);
       }).catch( error => {
         alert("Error: " + error.response.data.detail)
