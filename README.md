@@ -34,6 +34,7 @@ __NOTE__: nextjs dev docker server could be replaced with a nginx server in prod
 # Future improvements
 - Add documentation.
 - Add tests.
+- Add toast messages for alert or errors.
 - Remove warning "Extra attributes from the server..." from the console.
 - Save JWT in cookies insted of using sessionStorage.
 - Add nginx configuration.
