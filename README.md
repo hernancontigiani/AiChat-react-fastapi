@@ -42,18 +42,20 @@ __NOTE__: nextjs dev docker server could be replaced with a nginx server in prod
 
 
 # How to setup a new project from scratch
+__NOTE__: This is not necesarry as nextjs is already installed in the project. Is just for reference.
+
 ## Create front app
 ```sh
 docker run --rm -it --user "$(id -u):$(id -g)" -v $(pwd):/front -w=/front node:18.16.0 npx create-next-app@latest --js front
 ```
 
 ## How to intall axios and flowbite
-Lanzar el docker
+Launch docker container with node image:
 ```sh
 $ docker run --rm -it --user "$(id -u):$(id -g)" -p 3000:3000 -v $(pwd)/front:/front -w=/front node:18.16.0 bash
 ```
 
-Lanzar los siguientes comandos
+Inside the docker terminal, run:
 ```sh
 $ npm install axios
 $ npm install flowbite flowbite-react
