@@ -1,20 +1,24 @@
-# Renaiss fullstack challenge
-# Problem
+# AiChat - FullStack React+FastAPI project
+![banner](banner.jpg)
+
+## About this project 🚀
 A microservice is required to be created with login functionality and user registration, with access to a chat and a language model for chat history.
 
-The chat history must show the first message that the user sent to the chat and if he wants to access that history, show the rest of the messages.
+The user can ask questions of a maximum of 2000 tokens and a maximum of 20 messages.
 
-The user can ask questions of a maximum of 2000 tokens and a maximum of 20 messages. The user must be informed as he progresses in his question the number of tokens left for that question and once the question is sent, he must inform how many questions he has left for that chat. Once the token limit is reached, it should not be allowed to continue writing and once the message limit has been reached, a new chat must be started.
+The backend will process the information using a AI microservice base ond Tensorflow Serving and response back to the user
 
-# Stack
+## Tech Stack 📋
+- Backend in FastAPI
+- AI ChatModel with Tensorflow and Tensorflow Serving
+- Authentication
+- Dockerized
 - Frontend in Next.js with Javascript.
 - Frontend styles/components using flowbite.
-- Backend in FastAPI
 - Relational database with PostgreSQL
-- Dockerized
-- Authentication will be done through the use of JWT from the frontend. 
 
-# Start the project
+
+## Start the project
 Launch the backend + database docker:
 ```sh
 $ docker-compose up
@@ -31,7 +35,7 @@ Go to http://localhost:3000
 __NOTE__: nextjs dev docker server could be replaced with a nginx server in production after building the application as static files.
 
 
-# Future improvements
+## Future improvements
 - Add documentation.
 - Add tests.
 - Add toast messages for alert or errors.
@@ -41,23 +45,26 @@ __NOTE__: nextjs dev docker server could be replaced with a nginx server in prod
 - Demo deploy on AWS.
 
 
-# How to setup a new project from scratch
+## How to setup a new project from scratch
 __NOTE__: This is not necesarry as nextjs is already installed in the project. Is just for reference.
 
-## Create front app
+- Create front app
 ```sh
 docker run --rm -it --user "$(id -u):$(id -g)" -v $(pwd):/front -w=/front node:18.16.0 npx create-next-app@latest --js front
 ```
 
-## How to intall axios and flowbite
+- How to intall axios and flowbite
 Launch docker container with node image:
 ```sh
 $ docker run --rm -it --user "$(id -u):$(id -g)" -p 3000:3000 -v $(pwd)/front:/front -w=/front node:18.16.0 bash
 ```
 
-Inside the docker terminal, run:
+- Inside the docker terminal, run:
 ```sh
 $ npm install axios
 $ npm install flowbite flowbite-react
 ```
 
+## Thanks!
+Feel free to contact me by mail _hernan4790@gmail.com_ for any doubt.\
+Enjoy :smile:!!
